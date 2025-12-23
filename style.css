@@ -1,0 +1,725 @@
+/** 
+* ! changing default styles of browser 
+**/ 
+ 
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+} 
+ 
+body { 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 20px;
+} 
+ 
+.container { 
+  display: flex; 
+  flex-direction: row; 
+  width: 100%;
+  max-width: 1200px;
+  min-height: 650px;
+  box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
+  border-radius: 15px;
+  overflow: hidden;
+  background: white;
+  transition: all 0.3s ease;
+} 
+ 
+/** 
+* ! style rules for content section 
+**/ 
+ 
+.content { 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: space-around; 
+  align-items: center;
+  background: linear-gradient(135deg, #f2796e 0%, #e0564f 100%);
+  width: 55%; 
+  min-height: 650px; 
+  padding: 50px 40px; 
+  position: relative;
+  overflow: hidden;
+} 
+
+.content::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 300px;
+  height: 300px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+.content::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -10%;
+  width: 200px;
+  height: 200px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+}
+
+/* Стили для вашей Яндекс картинки */
+.logo img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 8px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  margin-bottom: 30px;
+  z-index: 1;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logo img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Большая фоновая иллюстрация */
+.image { 
+  background-image: url("https://img.freepik.com/free-vector/mobile-login-concept-illustration_114360-83.jpg"); 
+  background-repeat: no-repeat; 
+  background-size: contain; 
+  background-position: center; 
+  width: 100%;
+  height: 45%;
+  min-height: 220px;
+  margin: 20px 0;
+  z-index: 1;
+  position: relative;
+} 
+ 
+.text { 
+  text-align: center; 
+  color: white; 
+  font-size: 26px; 
+  font-weight: 600;
+  line-height: 1.4;
+  margin-top: 20px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  position: relative;
+} 
+ 
+/** 
+* ! style rules for form section 
+**/ 
+ 
+form { 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  width: 45%; 
+  padding: 60px 50px; 
+  background: white;
+  position: relative;
+} 
+ 
+.title { 
+  font-size: 32px; 
+  font-weight: 700; 
+  margin-bottom: 40px; 
+  color: #333;
+  position: relative;
+  padding-bottom: 15px;
+} 
+ 
+.title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(to right, #f2796e, #e0564f);
+  border-radius: 2px;
+}
+ 
+form div input { 
+  width: 100%; 
+  height: 50px; 
+  border-radius: 10px; 
+  outline: none; 
+  border: 2px solid #e0e0e0; 
+  padding: 0 45px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background-color: #f9f9f9;
+} 
+ 
+label { 
+  display: block; 
+  margin-bottom: 10px; 
+  font-weight: 600;
+  color: #444;
+  font-size: 15px;
+} 
+ 
+form div { 
+  position: relative; 
+  margin-bottom: 25px; 
+} 
+ 
+input:focus { 
+  border: 2px solid #f2796e; 
+  background-color: white;
+  box-shadow: 0 0 0 4px rgba(242, 121, 110, 0.15);
+} 
+ 
+/** 
+* ! style rules for form icons 
+**/ 
+ 
+form div i:first-of-type {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+input:focus + i {
+  color: #f2796e;
+}
+
+.success-icon, 
+.failure-icon { 
+  position: absolute;
+  right: 15px; 
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  opacity: 0; 
+  transition: opacity 0.3s ease;
+} 
+ 
+.failure-icon, 
+.error { 
+  color: #e74c3c; 
+} 
+ 
+.success-icon { 
+  color: #2ecc71; 
+} 
+ 
+.error { 
+  font-size: 14px; 
+  margin-top: 8px; 
+  color: #e74c3c;
+  min-height: 20px;
+  font-weight: 500;
+} 
+ 
+/** 
+* ! Password strength styles 
+**/
+
+.password-strength {
+    margin: -5px 0 25px 0;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    border: 2px solid #e9ecef;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.strength-bar-container {
+    width: 100%;
+    height: 10px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.strength-bar {
+    height: 100%;
+    width: 0%;
+    border-radius: 5px;
+    transition: width 0.5s ease, background-color 0.5s ease;
+}
+
+.strength-text {
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.strength-text span {
+    font-weight: 700;
+}
+
+.password-requirements {
+    font-size: 14px;
+    color: #666;
+    position: relative;
+    z-index: 2;
+}
+
+.password-requirements p {
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.password-requirements i {
+    margin-right: 12px;
+    width: 18px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.password-requirements .fa-check {
+    color: #2ecc71;
+}
+
+.password-requirements .fa-times {
+    color: #e74c3c;
+}
+
+/** 
+* ! Terms & Conditions 
+**/
+
+.terms {
+    display: flex;
+    align-items: center;
+    margin: 15px 0 25px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.terms input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+    cursor: pointer;
+}
+
+.terms label {
+    margin: 0;
+    font-weight: 500;
+    color: #555;
+    cursor: pointer;
+}
+
+.terms a {
+    color: #f2796e;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.terms a:hover {
+    text-decoration: underline;
+}
+
+/** 
+* ! Login link 
+**/
+
+.login-link {
+    text-align: center;
+    margin-top: 25px;
+    color: #666;
+    font-size: 15px;
+}
+
+.login-link a {
+    color: #f2796e;
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 5px;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+/** 
+* ! style rules for button  
+**/ 
+ 
+button { 
+  margin-top: 20px; 
+  width: 100%; 
+  height: 55px; 
+  background: linear-gradient(to right, #f2796e, #e0564f);
+  border: none;
+  border-radius: 10px; 
+  color: #fff; 
+  font-size: 18px; 
+  font-weight: 700;
+  cursor: pointer; 
+  box-shadow: 0 5px 15px rgba(242, 121, 110, 0.4); 
+  transition: all 0.3s ease; 
+  position: relative;
+  overflow: hidden;
+} 
+ 
+button:hover { 
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(242, 121, 110, 0.5);
+} 
+
+button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(242, 121, 110, 0.4);
+}
+
+button:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/** 
+* ! Modal Styles 
+**/
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    position: relative;
+    animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+    from { 
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 30px;
+    cursor: pointer;
+    color: #999;
+    transition: color 0.3s ease;
+    background: none;
+    border: none;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-modal:hover {
+    color: #333;
+}
+
+.success-icon-large {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.success-icon-large i {
+    font-size: 70px;
+    color: #2ecc71;
+    animation: scaleIn 0.5s ease;
+}
+
+@keyframes scaleIn {
+    0% { transform: scale(0); }
+    70% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.modal-content h2 {
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 28px;
+}
+
+.user-email {
+    font-size: 20px;
+    font-weight: bold;
+    color: #f2796e;
+    text-align: center;
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border-left: 5px solid #f2796e;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 15px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
+
+.btn-modal {
+    flex: 1;
+    min-width: 200px;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.btn-modal {
+    background: linear-gradient(to right, #f2796e, #e0564f);
+    color: white;
+}
+
+.btn-modal:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(242, 121, 110, 0.4);
+}
+
+.btn-modal.secondary {
+    background: #6c757d;
+}
+
+.btn-modal.secondary:hover {
+    background: #5a6268;
+}
+
+.modal-note {
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+/** 
+* ! Email Modal Specific Styles 
+**/
+
+.email-actions {
+    display: flex;
+    gap: 15px;
+    margin: 25px 0;
+    flex-wrap: wrap;
+}
+
+.btn-primary, .btn-secondary {
+    flex: 1;
+    min-width: 200px;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(to right, #f2796e, #e0564f);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(242, 121, 110, 0.4);
+}
+
+.btn-secondary {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.btn-secondary:hover {
+    background: #e0e0e0;
+    transform: translateY(-2px);
+}
+
+.modal-footer {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+}
+
+.modal-footer a {
+    color: #f2796e;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.modal-footer a:hover {
+    text-decoration: underline;
+}
+
+/** 
+* ! Media Queries for responsiveness 
+**/ 
+
+@media (max-width: 992px) { 
+  .container { 
+    flex-direction: column; 
+    max-width: 600px;
+    margin: 20px;
+  } 
+  
+  .content,
+  form { 
+    width: 100%; 
+  } 
+  
+  .content {
+    min-height: 350px;
+    padding: 40px 30px;
+    order: 1;
+  }
+  
+  form {
+    order: 2;
+    padding: 50px 40px;
+  }
+  
+  .logo img {
+    width: 130px;
+    height: 130px;
+  }
+  
+  .image { 
+    height: 200px; 
+  } 
+  
+  .text {
+    font-size: 22px;
+  }
+} 
+
+@media (max-width: 576px) { 
+  .container {
+    margin: 10px;
+    border-radius: 12px;
+  }
+  
+  form { 
+    padding: 40px 25px; 
+  } 
+  
+  .content {
+    padding: 30px 20px;
+  }
+  
+  .title {
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+  
+  .logo img {
+    width: 110px;
+    height: 110px;
+    border-width: 6px;
+  }
+  
+  .text {
+    font-size: 20px;
+  }
+  
+  .modal-actions,
+  .email-actions {
+    flex-direction: column;
+  }
+  
+  .btn-modal,
+  .btn-primary,
+  .btn-secondary {
+    min-width: 100%;
+  }
+  
+  .modal-content {
+    padding: 30px 20px;
+    margin: 15px;
+  }
+}
+
+@media (max-width: 400px) {
+  form {
+    padding: 30px 20px;
+  }
+  
+  .content {
+    padding: 25px 15px;
+  }
+  
+  .title {
+    font-size: 24px;
+  }
+  
+  form div input {
+    height: 45px;
+    font-size: 15px;
+  }
+  
+  button {
+    height: 50px;
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .profile-container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
+        }
+        
+        .profile-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .profile-header h1 {
+            color: #f2796e;
+            margin-bottom: 10px;
+            font-size: 36px;
+        }
+        
+        .profile-header p {
+            color: #666;
+            font-size: 18px;
+        }
+        
+        .profile-avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            margin: 30px auto;
+            background: linear-gradient(135deg, #f2796e 0%, #e0564f 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(242, 121, 110, 0.4);
+            border: 8px solid white;
+        }
+        
+        .profile-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .info-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 5px solid #f2796e;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .info-card h3 {
+            color: #333;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 20px;
+        }
+        
+        .info-card h3 i {
+            color: #f2796e;
+        }
+        
+        .info-card p {
+            margin: 12px 0;
+            color: #666;
+            font-size: 16px;
+        }
+        
+        .info-label {
+            font-weight: 600;
+            color: #555;
+            display: inline-block;
+            width: 150px;
+        }
+        
+        .info-value {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .profile-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .profile-btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(to right, #f2796e, #e0564f);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(242, 121, 110, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: translateY(-3px);
+        }
+        
+        .btn-danger {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background: #c0392b;
+            transform: translateY(-3px);
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+        
+        .empty-state i {
+            font-size: 80px;
+            color: #ddd;
+            margin-bottom: 25px;
+        }
+        
+        .empty-state h3 {
+            color: #777;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+        
+        .empty-state p {
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <div class="profile-header">
+            <h1>User Profile</h1>
+            <p>Welcome to your personal dashboard</p>
+        </div>
+        
+        <div id="profile-content">
+            <!-- Данные будут загружены через JavaScript -->
+            <div class="empty-state" id="empty-state">
+                <i class="fas fa-user-circle"></i>
+                <h3>No User Data Found</h3>
+                <p>Please register first to view your profile</p>
+                <a href="index.html" class="profile-btn btn-primary">
+                    <i class="fas fa-user-plus"></i> Go to Registration
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Загружаем данные из localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedData = localStorage.getItem('userData');
+            const profileContent = document.getElementById('profile-content');
+            const emptyState = document.getElementById('empty-state');
+            
+            if (savedData) {
+                const userData = JSON.parse(savedData);
+                
+                // Получаем первую букву имени для аватарки
+                const firstLetter = userData.fullname.charAt(0).toUpperCase();
+                
+                // Форматируем дату
+                const regDate = new Date(userData.registeredAt);
+                const formattedDate = regDate.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+                
+                // Создаем HTML профиля
+                profileContent.innerHTML = `
+                    <div class="profile-avatar">
+                        ${firstLetter}
+                    </div>
+                    
+                    <div class="profile-info">
+                        <div class="info-card">
+                            <h3><i class="fas fa-user"></i> Personal Information</h3>
+                            <p><span class="info-label">Full Name:</span> 
+                               <span class="info-value">${userData.fullname}</span></p>
+                            <p><span class="info-label">Email:</span> 
+                               <span class="info-value">${userData.email}</span></p>
+                            <p><span class="info-label">Account Status:</span> 
+                               <span class="info-value" style="color: ${userData.confirmed ? '#2ecc71' : '#e67e22'}">
+                                   ${userData.confirmed ? '✓ Confirmed' : '⏳ Pending Confirmation'}
+                               </span></p>
+                        </div>
+                        
+                        <div class="info-card">
+                            <h3><i class="fas fa-calendar-alt"></i> Account Details</h3>
+                            <p><span class="info-label">Registered:</span> 
+                               <span class="info-value">${formattedDate}</span></p>
+                            <p><span class="info-label">User ID:</span> 
+                               <span class="info-value">${Date.parse(userData.registeredAt)}</span></p>
+                            <p><span class="info-label">Last Login:</span> 
+                               <span class="info-value">${new Date().toLocaleDateString()}</span></p>
+                        </div>
+                        
+                        <div class="info-card">
+                            <h3><i class="fas fa-shield-alt"></i> Security</h3>
+                            <p><span class="info-label">Password Strength:</span> 
+                               <span class="info-value">★★★★☆</span></p>
+                            <p><span class="info-label">Two-Factor Auth:</span> 
+                               <span class="info-value" style="color: #e74c3c">Disabled</span></p>
+                            <p><span class="info-label">Email Verified:</span> 
+                               <span class="info-value" style="color: ${userData.confirmed ? '#2ecc71' : '#e74c3c'}">
+                                   ${userData.confirmed ? 'Yes' : 'No'}
+                               </span></p>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-actions">
+                        <a href="index.html" class="profile-btn btn-primary">
+                            <i class="fas fa-arrow-left"></i> Back to Home
+                        </a>
+                        <button onclick="editProfile()" class="profile-btn btn-secondary">
+                            <i class="fas fa-edit"></i> Edit Profile
+                        </button>
+                        <button onclick="deleteAccount()" class="profile-btn btn-danger">
+                            <i class="fas fa-trash-alt"></i> Delete Account
+                        </button>
+                    </div>
+                `;
+                
+                emptyState.style.display = 'none';
+            } else {
+                emptyState.style.display = 'block';
+            }
+        });
+        
+        function editProfile() {
+            alert('Edit profile functionality would go here!\n\nIn a real application, this would open a form to edit your profile information.');
+        }
+        
+        function deleteAccount() {
+            if (confirm('Are you sure you want to delete your account?\n\nThis action will:\n• Remove all your data\n• Cancel any active subscriptions\n• This action cannot be undone!')) {
+                localStorage.removeItem('userData');
+                sessionStorage.removeItem('currentUser');
+                alert('Account deleted successfully.');
+                window.location.href = 'index.html';
+            }
+        }
+    </script>
+</body>
+</html>

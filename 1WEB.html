@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Sign Up Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        
+
+        <div class="content">
+            <div class="logo">
+                <img src="https://avatars.mds.yandex.net/i?id=de2f1076b5efe50d0836fd7119e45c99_sr-10787799-images-thumbs&n=13" 
+                     alt="User Avatar" />
+            </div>
+            
+            <div class="image"></div>
+            
+            <div class="text">
+                Start for free & get <br />
+                attractive offers today !
+            </div>
+        </div>
+        
+
+        <form id="form">
+            <div class="title">Sign Up</div>
+            
+            <!-- Full Name input -->
+            <div>
+                <label for="fullname">Full Name</label>
+                <i class="fas fa-user"></i>
+                <input 
+                    type="text" 
+                    name="fullname" 
+                    id="fullname" 
+                    placeholder="Joy Shaheb" 
+                />
+                <i class="fas fa-exclamation-circle failure-icon"></i>
+                <i class="far fa-check-circle success-icon"></i>
+                <div class="error"></div>
+            </div>
+
+            <!-- Email input -->
+            <div>
+                <label for="email">Email</label>
+                <i class="far fa-envelope"></i>
+                <input 
+                    type="email" 
+                    name="email" 
+                    id="email" 
+                    placeholder="abc@gmail.com" 
+                />
+                <i class="fas fa-exclamation-circle failure-icon"></i>
+                <i class="far fa-check-circle success-icon"></i>
+                <div class="error"></div>
+            </div>
+
+            <!-- Password input -->
+            <div>
+                <label for="password">Password</label>
+                <i class="fas fa-lock"></i>
+                <input 
+                    type="password" 
+                    name="password" 
+                    id="password" 
+                    placeholder="Password here" 
+                />
+                <!-- убраны иконки-->
+                <div class="error"></div>
+            </div>
+
+            <!-- проверка сложности пароля -->
+            <div class="password-strength">
+                <div class="strength-bar-container">
+                    <div class="strength-bar"></div>
+                </div>
+                <div class="strength-text">
+                    Password strength: <span>Weak</span>
+                </div>
+                <div class="password-requirements">
+                    <p><i class="fas fa-times"></i> At least 8 characters</p>
+                    <p><i class="fas fa-times"></i> One uppercase letter</p>
+                    <p><i class="fas fa-times"></i> One lowercase letter</p>
+                    <p><i class="fas fa-times"></i> One number</p>
+                    <p><i class="fas fa-times"></i> One special character</p>
+                </div>
+            </div>
+
+            <!-- Confirm Password input -->
+            <div>
+                <label for="confirmPassword">Confirm Password</label>
+                <i class="fas fa-lock"></i>
+                <input 
+                    type="password" 
+                    name="confirmPassword" 
+                    id="confirmPassword" 
+                    placeholder="Confirm your password" 
+                />
+                <i class="fas fa-exclamation-circle failure-icon"></i>
+                <i class="far fa-check-circle success-icon"></i>
+                <div class="error"></div>
+            </div>
+
+            <!-- Terms & Conditions -->
+            <div class="terms">
+                <input type="checkbox" name="terms" id="terms">
+                <label for="terms">I agree to the <a href="#">Terms & Conditions</a></label>
+                <div class="error"></div>
+            </div>
+
+            <button id="btn" type="submit">Register Now</button>
+
+            <div class="login-link">
+                Already have an account? <a href="#" id="login-link">Login here</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="success-icon-large">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>Registration Successful!</h2>
+            <p>Welcome <span id="user-name"></span>!</p>
+            <p>We've sent a confirmation email to:</p>
+            <p id="user-email" class="user-email"></p>
+            
+            <div class="modal-actions">
+                <button id="view-profile" class="btn-modal">
+                    <i class="fas fa-user-circle"></i> View Your Profile
+                </button>
+                <button id="send-email" class="btn-modal secondary" onclick="sendMail()">
+                    <i class="fas fa-paper-plane"></i> Send Confirmation Email
+                </button>
+            </div>
+            
+            <p class="modal-note">
+                <small>Check your inbox (and spam folder) for the confirmation email.</small>
+            </p>
+        </div>
+    </div>
+
+    <!-- Email Confirmation Modal -->
+    <div id="email-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Email Confirmation</h2>
+            <p>We've sent a confirmation email to:</p>
+            <p id="user-email-display" class="user-email"></p>
+            
+            <div class="email-actions">
+                <button type="button" class="btn-secondary" onclick="resendEmail()">
+                    <i class="fas fa-redo"></i> Resend Email
+                </button>
+                <button type="button" class="btn-primary" onclick="sendMail()">
+                    <i class="fas fa-paper-plane"></i> Send via Email Client
+                </button>
+            </div>
+            
+            <div class="modal-footer">
+                <p>Didn't receive the email? Check your spam folder or 
+                   <a href="#" onclick="resendEmail()">click here to resend</a>.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
